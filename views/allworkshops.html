@@ -1,0 +1,32 @@
+<%- include ('./partials/head.ejs') %>
+<body id="third">
+    
+    <%- include ('./partials/header.ejs') %>
+    
+    <div class="container">
+        <% if (complains.length > 0){%>
+            <% complains.forEach(complain => { %>
+        <div class="cont all">
+            <div class="det">
+                <form action="/allcomplains" method="post">
+                <input type="text" hidden name=id value=<%=complain._id %>>
+                <h2><%=complain.username%></h2>
+                <span class="icon-close"><button type="submit" class="btn" style="background-color: transparent;"><i class="fa-solid fa-xmark" style=color:black></i></button></span>
+                
+                  </form>
+            </div>
+            <p><%=complain.complain%></p>
+        </div>
+        <% }) %>
+        <%}%>
+        
+            <div class="all last">
+                <h2>Nothing More to See</h2>
+            </div>
+        
+       
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+
+        <nav class="navMenu" style="background:transparent">
+          <a href="/home">Home</a>
+          <a href="/about-us">About Us</a>
+          
+          <%if(instructor){%>
+            
+                        <a href="/instructorlogout">Logout</a>
+            
+            <a href="">Hi  <%=instructor.username%>, Instructor</a>
+         
+        
+            <%} else if (attendee){ %>
+              <a href="">hi attendee <%=attendee.username%></a>
+              <a href="/myworkshops">My Courses</a>
+           
+                
+                <a href="/logout">Logout</a>
+                <%} else {%>
+                    <a href="login">login</a>
+                
+            <%}%>
+          
+        </nav>
+

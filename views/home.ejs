@@ -1,0 +1,52 @@
+
+
+<!--DOCTYPE html tells the browser that the document is an html page-->
+<!DOCTYPE html>
+<!--Begining of html code-->
+<html>
+  <!--Begining of head section--> 
+  <head>
+	 <title>WPRMS</title>
+	 <!--Linking the CSS stylesheet using extrenal CSS-->
+	 <link rel="stylesheet" type="text/css" href="home.css">
+	 <!--Font Awesome script for using icons from font awesome-->
+	 <script src="https://kit.fontawesome.com/6f0f83005a.js" crossorigin="anonymous"></script>
+	 <!--Adds responsiveness to the website-->
+   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+
+    <script src="https://kit.fontawesome.com/e9c26e2c6d.js" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    
+    <%- include ('./partials/header.ejs') %>
+    
+        
+ 
+        <main>
+
+          <form>
+            <% if(workshops.length > 0) {%>
+              <% workshops.slice(0, 4).forEach(workshop => {  %>
+                <input type="radio" name="fancy" autofocus value="" id="clubs" /><%=workshop.Name%>
+                <p>-<%=workshop.instructor%></p>
+
+            
+                <input type="radio" name="fancy" value="hearts" id="hearts" />
+                <input type="radio" name="fancy" value="spades" id="spades" />
+                <input type="radio" name="fancy" value="diamonds" id="diamonds" />			
+                <label for="clubs">&#9827; <%=workshop.name%></label><label for="hearts">&#9829; Hearts</label><label for="spades">&#9824; Spades</label><label for="diamonds">&#9830; Diamonds</label>
+            <%})%>
+            
+            <%}%>
+
+            
+      
+            <div class="keys">Use left and right keys to navigate</div>
+        </form>
+         
+        </main>
+      
+   
+</body>
+

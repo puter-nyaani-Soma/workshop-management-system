@@ -1,0 +1,236 @@
+<%- include ('./partials/head.ejs') %>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    </head>
+ 
+<style>
+    
+*{
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  
+
+}
+.cont{
+    position: relative;
+    height: 640px;;
+    width: 400px;
+    background:transparent;
+    border-radius:20px;
+    border: 3px solid rgba(255, 255, 255, 0.523);
+    backdrop-filter: blur(20px);
+    box-shadow:0 0 30px rgba(0, 0, 0, 0.502);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* transform: scale(0); */
+    transition: transform .5s ease, height 0.5s ease;
+    
+}
+    .container{
+    display:flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top:150px;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    align-items:stretch;
+    justify-content: space-around;
+    
+}
+
+.all .det{
+    font-size:1.5em;
+    top: 0;
+    left:0px;
+    width: 100%;
+    color: #f92c6d;
+    position: absolute;
+    border-bottom: 2px solid #fff;
+    overflow:visible;
+    padding: 5px 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+}
+
+.cont .icon-close{
+    position: absolute;
+    top:0;
+    right:0;
+    width:45px;
+    height: 45px;
+    color:#f92c6d;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#fff;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.wrapper .icon-close{
+    position: absolute;
+    top:0;
+    right:0;
+    width:45px;
+    height: 45px;
+    color:#f92c6d;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#fff;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.btn{
+    width: 100%;
+    height: 45px;
+    background-color: #fff;
+    border-radius:3px;
+    border: none;
+    outline: none;
+    color:#f92c6d;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.all{
+    margin:20px !important;
+    flex-basis: 25%;
+    display: flex;
+    width: 200px;
+    height:300px;
+    
+}
+
+.all.last{
+    flex-basis: 100%;
+    color: #fff;
+   
+    justify-content: center;
+}
+.btn{
+    width: 100px;
+    height: 45px;
+    background-color: #fff;
+    border-radius:30px;
+    border: none;
+    outline: none;
+    color:#f92c6d;
+    cursor: pointer;
+    font-weight: 900;
+    margin-top :10px;
+    margin-left: 10px;
+}
+.modal {
+  display: none;
+  position: relative;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+</style>
+  <%- include ('./partials/header.ejs') %>
+  <div class="container">
+  
+    
+    <% if (workshops.length > 0){%>
+        <% workshops.forEach(workshop => { %>
+            <%if( workshop.maxLimit >0 ){%>
+                <div class="cont all">
+                    <div class="det">
+            <h2><%=workshop.Name%></h2>
+         </div>
+            <p><%=workshop.description%></p>
+                        <h5>Fee</h5><span><p><%=workshop.fee%></p></span>
+                    <h5>Slots</h5><span><p><%=workshop.maxLimit%></p></span>
+                    <form action="/allworkshops_a" method="post">
+                        <input type="text" hidden name=id value=<%=workshop._id %>>
+                        <%if (!workshop.attendors.includes(attendee.username)){%>
+                        <button class="btn">Pay</button>
+                        <%}%>
+                        
+                        <input type="text" hidden name=wName value=<%=workshop.Name %>>
+                        <input type="text" hidden name=Name value=<%=attendee.username %>>
+                       
+                    </form>
+                </div>
+                    <%}%>
+                    <%})%>
+                    <%}%>
+                    
+                </div>
+               
+</div>
+                
+        
+                
+            
+           
+            
+            
+   
+
+       
+
+    
+        </div>
+<script>
+    function toggleModal() {
+  var modal = document.getElementById("myModal");
+  if (modal.style.display === "none") {
+    modal.style.display = "block";
+  } else {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+    
+</body>
+</html>

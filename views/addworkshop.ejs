@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--Begining of html code-->
+<html>
+<!--Begining of head section--> 
+<head>
+	 <title>Music Player</title>
+	 <!--Linking the CSS stylesheet using extrenal CSS-->
+	 <link rel="stylesheet" type="text/css" href="addworkshop.css">
+	 <!--Font Awesome script for using icons from font awesome-->
+	 <script src="https://kit.fontawesome.com/6f0f83005a.js" crossorigin="anonymous"></script>
+	 <!--Adds responsiveness to the website-->
+     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+    </head>
+    <!--End of head section-->
+    
+
+    <body>
+      
+  <%- include ('./partials/header.ejs') %>
+    <div class="container" id="container">
+        
+        <div class="form-container sign-in-container">
+          <div class="block">
+            <h1>Add Workshop</h1>
+          </div>
+            <form action="/addworkshop" method="post" id="signin-form">
+                
+                <input type="text" placeholder="Course Name" name="Name">
+                <textarea name="description" id="" cols="25" rows="10" placeholder="Description"></textarea>
+                <input type="number" placeholder="Fee" name="fee">
+                <input type="number" placeholder="Attendors allowed" name="maxLimit">
+                
+                <input type="text"  name="instructor" hidden value="<%=instructor.username%>">
+                
+             
+               
+                <button >Add</button>
+            </form>
+        </div>
+     		</div>
+
+
+<script src="./login.js" crossorigin="anonymous"></script>
+</body>

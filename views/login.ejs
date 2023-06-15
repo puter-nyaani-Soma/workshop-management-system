@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--Begining of html code-->
+<html>
+<!--Begining of head section--> 
+<head>
+	 <title>Music Player</title>
+	 <!--Linking the CSS stylesheet using extrenal CSS-->
+	 <link rel="stylesheet" type="text/css" href="login.css">
+	 <!--Font Awesome script for using icons from font awesome-->
+	 <script src="https://kit.fontawesome.com/6f0f83005a.js" crossorigin="anonymous"></script>
+	 <!--Adds responsiveness to the website-->
+     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+    </head>
+    <!--End of head section-->
+    
+
+    <body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id=signup-form action="/signup" method="post">
+                <h1>Create Account</h1>
+                
+                <span>Use your email for registration</span>
+                <input type="text" placeholder="Name" name="username" />
+                <div class="username error"></div>
+                <input type="email" placeholder="Email" name="email" />
+                <div class="email error"></div>
+                <input type="password" placeholder="Password" name="password" />
+                <div class="password error"></div>
+                <button >Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="/login" method="post" id="signin-form">
+                <h1>Sign in</h1>
+                <span>Use your account</span>
+                <input type="text" placeholder="UserName" name="username">
+                <div class="username1 error"></div>
+                <input type="password" placeholder="Password" name="password">
+                <div class="password1 error"></div>
+               
+                <button >Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+    </div>
+    <a id="login" href="/instructorlogin"><h1>Are you an Instructor?</h1></a>
+<script>
+const signInForm = document.querySelector('#signin-form');
+const signUpForm = document.querySelector('#signup-form');
+const signInPasswordError = document.querySelector('.password1.error');
+const signInUsernameError = document.querySelector('.username1.error');
+const signUpEmailError = document.querySelector('.email.error');
+const signUpPasswordError = document.querySelector('.password.error');
+const signUpUsernameError = document.querySelector('.username.error');
+
+// Add event listener for sign-in form
+signInForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // reset errors
+  signInPasswordError.textContent = '';
+  signInUsernameError.textContent ='';
+
+  // get values
+  const username = signInForm.username.value;
+  const password = signInForm.password.value;
+
+  try {
+    const res = await fetch('/login', { 
+      method: 'POST', 
+      body: JSON.stringify({ username,password }),
+      headers: {'Content-Type': 'application/json'}
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.errors1) {           
+      signInUsernameError.textContent = data.errors1.username;
+      signInPasswordError.textContent = data.errors1.password;
+    }
+    if (data.attendee) {
+      location.assign('/home');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// Add event listener for sign-up form
+signUpForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // reset errors
+  signUpEmailError.textContent = '';
+  signUpPasswordError.textContent = '';
+  signUpUsernameError.textContent ='';
+
+  // get values
+  const email = signUpForm.email.value;
+  const username = signUpForm.username.value;
+  const password = signUpForm.password.value;
+
+  try {
+    const res = await fetch('/signup', { 
+      method: 'POST', 
+      body: JSON.stringify({ email,username,password }),
+      headers: {'Content-Type': 'application/json'}
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.errors1) {           
+      signUpEmailError.textContent = data.errors1.email;
+      signUpUsernameError.textContent = data.errors1.username;
+      signUpPasswordError.textContent = data.errors1.password;
+    }
+    if (data.attendee) {
+      location.assign('/home');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
+
+</script>
+<script src="./login.js" crossorigin="anonymous"></script>
+</body>
