@@ -24,7 +24,7 @@ Follow these steps to get the application up and running:
 1. Clone the repository:
 
 ```bash
-git clone <(https://github.com/puter-nyaani-Soma/workshop-management-system)>
+git clone https://github.com/puter-nyaani-Soma/workshop-management-system
 ```
 
 2. Install the dependencies:
