@@ -24,7 +24,7 @@ Follow these steps to get the application up and running:
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone <(https://github.com/puter-nyaani-Soma/workshop-management-system)>
 ```
 
 2. Install the dependencies:
@@ -82,12 +82,9 @@ Contributions to this project are welcome. If you would like to contribute, plea
 4. Push your changes to your forked repository.
 5. Submit a pull request detailing your changes and their benefits.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-If you have any questions or suggestions, please feel free to contact the project maintainer at [your-email@example.com](mailto:your-email@example.com).
+If you have any questions or suggestions, please feel free to contact the project maintainer at sivabala2053@gmail.com.
 
 Enjoy managing your workshops!
